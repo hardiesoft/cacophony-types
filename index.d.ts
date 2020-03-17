@@ -7,6 +7,7 @@ export type UserId = number;
 export type TrackTagId = number;
 export type GroupId = number;
 export type JwtToken<T> = string;
+export type JwtTokenTtl = "short" | "medium" | "long";
 type UtcTimestamp = string;
 // TODO: Unify this with the TagMode type in the API, extract both into a third Types/Interfaces repo.
 export type TagMode =
