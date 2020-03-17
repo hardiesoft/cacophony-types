@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/hardiesoft/cacophony-types.git"
   },
-  "types": "./src/index.d.ts",
+  "types": "index.d.ts",
   "author": "Jon Hardie",
   "license": "AGPL-3.0",
   "bugs": {
