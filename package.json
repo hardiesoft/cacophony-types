@@ -1,0 +1,17 @@
+{
+  "name": "cacophony-types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript declarations for cacophony web repos.",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hardiesoft/cacophony-types.git"
+  },
+  "author": "Jon Hardie",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/hardiesoft/cacophony-types/issues"
+  },
+  "homepage": "https://github.com/hardiesoft/cacophony-types#readme"
+}
