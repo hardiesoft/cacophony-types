@@ -23,12 +23,15 @@ export type JsonString = string;
 export interface FetchResult<T> {
   result: T;
   success: boolean;
-  status: number;
+  //status: number;
 }
 
 export interface Device {
   id: DeviceId;
   devicename: string;
+  groupId: GroupId;
+  active: boolean;
+  users?: User[];
 }
 
 export interface Location {
@@ -76,6 +79,11 @@ export type CptvFile = "string";
 export type Seconds = number;
 export type Rectangle = [number, number, number, number];
 
+export interface RequestResult {
+  messages: string[];
+  success: boolean;
+}
+
 export interface Recording {
   messages: [];
   recording: RecordingInfo;
@@ -108,11 +116,22 @@ export interface Track {
   TrackTags: TrackTag[];
 }
 
+export interface DeviceUsers {
+  admin: boolean;
+  createdAt: UtcTimestamp;
+  updatedAt: UtcTimestamp;
+  DeviceId: DeviceId;
+  UserId: UserId;
+}
+
 export interface User {
   username: string;
-  id?: number;
+  id?: UserId; // FIXME(jon): We always want this.
   email: string;
   globalPermission: "read" | "write" | "off";
+
+  // FIXME(jon): Returned by devices: - but this seems unnecessary.
+  DeviceUsers: DeviceUsers;
 }
 
 export interface TrackTag {
@@ -146,9 +165,9 @@ export interface QueryResultCount {
 
 export interface QueryResult<T> {
   count: number;
-  limit: string; // NOTE(jon): Actually, a number, but comes back as a string...
+  limit?: string; // NOTE(jon): Actually, a number, but comes back as a string...
   messages: string[];
-  offset: string; // NOTE(jon): Actually, a number, but comes back as a string...
+  offset?: string; // NOTE(jon): Actually, a number, but comes back as a string...
   rows: T[];
   success: boolean;
 }
