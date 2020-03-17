@@ -71,26 +71,6 @@ export interface RecordingInfo {
   };
 }
 
-export interface LimitedTrack {
-  TrackId: TrackId;
-  data: {
-    start_s: number;
-    end_s: number;
-    positions: [Seconds, Rectangle][];
-    num_frames: number;
-  };
-  tags: string[];
-  needsTagging: boolean;
-}
-
-export interface TagLimitedRecording {
-  RecordingId: RecordingId;
-  DeviceId: DeviceId;
-  tracks: LimitedTrack[];
-  recordingJWT: JwtToken<Mp4File>;
-  tagJWT: JwtToken<TrackTag>;
-}
-
 export type Mp4File = "string";
 export type CptvFile = "string";
 export type Seconds = number;
@@ -180,4 +160,10 @@ export interface RecordingQuery {
   tagMode?: TagMode;
   tags?: string[];
   order?: any; // TODO - It's not clear what order accepts (it's a sequelize thing), but nobody seems to use it right now.
+}
+
+export interface RecordingToTag {
+  id: RecordingId;
+  deviceId: DeviceId;
+  tracks: Track[];
 }
