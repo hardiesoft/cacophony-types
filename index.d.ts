@@ -41,6 +41,14 @@ export interface Location {
 
 export type RecordingType = "thermalRaw" | "audio";
 
+export interface Group {
+  id: GroupId;
+  groupname: string;
+  Users: User[];
+  Devices: Device[];
+  GroupUsers: any; // Fixme - no idea what this looks like.
+}
+
 export interface RecordingInfo {
   id: RecordingId;
   type: RecordingType;
