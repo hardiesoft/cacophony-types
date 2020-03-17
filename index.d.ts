@@ -1,4 +1,4 @@
-declare namespace cacophony {
+export namespace cacophony {
     // Types go here
 
     export type DeviceId = number;
@@ -10,19 +10,30 @@ declare namespace cacophony {
     export type GroupId = number;
     export type JwtToken<T> = string;
     type UtcTimestamp = string;
+    // TODO: Unify this with the TagMode type in the API, extract both into a third Types/Interfaces repo.
+    export type TagMode =
+        | "any"
+        | "no-human"
+        | "tagged"
+        | "human-tagged"
+        | "automatic-tagged"
+        | "both-tagged"
+        | "untagged";
 
-    interface FetchResult<T> {
+    export type JsonString = string;
+
+    export interface FetchResult<T> {
         result: T;
         success: boolean;
         status: number;
     }
 
-    interface Device {
+    export interface Device {
         id: DeviceId;
         devicename: string;
     }
 
-    interface Location {
+    export interface Location {
         type: "Point" | string;
         coordinates: [number, number];
     }
@@ -82,8 +93,11 @@ declare namespace cacophony {
         tagJWT: JwtToken<TrackTag>;
     }
 
-    type Mp4File = "string";
-    type CptvFile = "string";
+    export type Mp4File = "string";
+    export type CptvFile = "string";
+    export type Seconds = number;
+    export type Rectangle = [number, number, number, number];
+
     export interface Recording {
         messages: [];
         recording: RecordingInfo;
@@ -93,9 +107,6 @@ declare namespace cacophony {
         downloadRawJWT: JwtToken<CptvFile>;
         success: boolean;
     }
-
-    type Seconds = number;
-    type Rectangle = [number, number, number, number];
 
     export interface Track {
         id: TrackId;
@@ -164,18 +175,6 @@ declare namespace cacophony {
         success: boolean;
     }
 
-// TODO: Unify this with the TagMode type in the API, extract both into a third Types/Interfaces repo.
-    export type TagMode =
-        | "any"
-        | "no-human"
-        | "tagged"
-        | "human-tagged"
-        | "automatic-tagged"
-        | "both-tagged"
-        | "untagged";
-
-    type JsonString = string;
-
     export interface RecordingQuery {
         where: JsonString; // Stringified: { duration: { $gte: number }; type: RecordingType; }
         limit: number;
@@ -185,5 +184,3 @@ declare namespace cacophony {
         order?: any; // TODO - It's not clear what order accepts (it's a sequelize thing), but nobody seems to use it right now.
     }
 }
-
-export default cacophony;
